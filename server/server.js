@@ -88,11 +88,8 @@ const server = http.createServer(app);
 
 // ✅ CORS middleware - only once and with correct frontend URL
 app.use(cors({
-  origin: [
-    "http://localhost:3000", // Local React
-    "http://localhost:5173", // Local Vite
-    "https://mern-chat-app-pi-dusky.vercel.app", // ✅ Your deployed frontend
-  ],
+  origin: "*",
+    
   credentials: true,
 }));
 
