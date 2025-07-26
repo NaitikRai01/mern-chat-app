@@ -107,7 +107,7 @@ app.use(cors({
   origin: [
     "http://localhost:3000",             // Local development
     "http://localhost:5173",             // Vite (optional)
-    "https://your-frontend.vercel.app"   // ✅ Replace with your Vercel URL
+    "https://mern-chat-app-vusu.vercel.app"   // ✅ Replace with your Vercel URL
   ],
   credentials: true,
 }));
