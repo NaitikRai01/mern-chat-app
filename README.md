@@ -5,7 +5,7 @@ A full-stack real-time chat application built with the MERN stack (MongoDB, Expr
 ## 🔗 Live Demo
 
 - **Frontend**: [https://chat-app-coral-zeta.vercel.app](https://chat-app-coral-zeta.vercel.app)
-- **Backend**: [https://mern-chat-app-ivory-seven.vercel.app/api/status](https://mern-chat-app-ivory-seven.vercel.app/api/status)
+- **Backend**: [https://mern-chat-app-ivory-seven.vercel.app/api/status](https://mern-chat-app-ivory-seven.vercel.app/api/status) 
 
 ---
 
