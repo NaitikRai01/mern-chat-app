@@ -1,0 +1,49 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Varela+Round&display=swap');
+@import "tailwindcss";
+*{
+  font-family: "Varela Round", sans-serif;
+}
+::-webkit-scrollbar{
+  display: none;
+}*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Varela+Round&display=swap');
+
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+* {
+  font-family: "Varela Round", sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+*/
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Varela+Round&display=swap');
+/*@import "tailwindcss/preflight";  
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Varela Round", sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Varela Round", sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
