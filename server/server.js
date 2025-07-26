@@ -1,4 +1,4 @@
-
+/*
 
 import express from "express";
 import "dotenv/config";
@@ -87,6 +87,80 @@ export default server;
 
 
 
+*/
+
+import express from "express";
+import "dotenv/config";
+import cors from "cors";
+import http from "http";
+import { connectDB } from "./lib/db.js";
+import userRouter from "./routes/userRoutes.js";
+import messageRouter from "./routes/messageRoutes.js";
+import { Server } from "socket.io";
+
+// Create express app and HTTP server
+const app = express();
+const server = http.createServer(app);
+
+// ✅ Use proper CORS config (only once)
+app.use(cors({
+  origin: [
+    "http://localhost:3000",             // Local development
+    "http://localhost:5173",             // Vite (optional)
+    "https://your-frontend.vercel.app"   // ✅ Replace with your Vercel URL
+  ],
+  credentials: true,
+}));
+
+// ✅ Parse incoming JSON
+app.use(express.json({ limit: "4mb" }));
+
+// ✅ Initialize Socket.IO
+export const io = new Server(server, {
+  cors: {
+    origin: "*", // Socket.IO works independently of auth, so wildcard is okay
+  },
+});
+
+// ✅ Map to track online users
+export const userSocketMap = {}; // { userId: socketId }
+
+// ✅ Handle Socket.IO connections
+io.on("connection", (socket) => {
+  const userId = socket.handshake.query.userId;
+  console.log("User Connected:", userId);
+
+  if (userId) {
+    userSocketMap[userId] = socket.id;
+  }
+
+  io.emit("getOnlineUsers", Object.keys(userSocketMap));
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected:", userId);
+    delete userSocketMap[userId];
+    io.emit("getOnlineUsers", Object.keys(userSocketMap));
+  });
+});
+
+// ✅ Health check route
+app.use("/api/status", (req, res) => res.send("Server is live 🚀"));
+
+// ✅ API routes
+app.use("/api/auth", userRouter);
+app.use("/api/messages", messageRouter);
+
+// ✅ Connect to MongoDB
+await connectDB();
+
+// ✅ Start local server
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  server.listen(PORT, () => console.log("Server running on PORT:", PORT));
+}
+
+// ✅ Export for Vercel deployment
+export default server;
 
 
 
